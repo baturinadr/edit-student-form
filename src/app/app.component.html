@@ -1,0 +1,102 @@
+<!-- Card && Card main -->
+<div class="card card-main">
+  <header class="card-header">
+    <div class="card-header-inner">
+      <h1>Edit student</h1>
+
+      <button id='close'>Close</button>
+    </div><!-- /.card-header-inner -->
+  </header><!-- /.card-header -->
+
+
+  <!-- Card main body -->
+  <main class="card-body">
+    <div class="card">
+      <div class="card-header">
+        <div class="full-name">
+          <div>
+            <label for="studentName" class="form-label">Name</label>
+            <input type="text" class="form-control" id="studentName" placeholder="Student's name" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div><!-- /.feedback -->
+          </div>
+
+          <div>
+            <label for="studentAge" class="form-label">Age</label>
+            <input type="text" class="form-control" id="studentAge" placeholder="Student's age" required>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div><!-- /.feedback -->
+          </div>
+        </div><!-- /.full-name -->
+
+        <div class="sport-group">
+          <div>
+            <label for="minSportGroup" class="form-label">Name</label>
+            <input type="number" class="form-control" id="minSportGroup" placeholder="Min sport group" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div><!-- /.feedback -->
+          </div>
+
+          <div>
+            <label for="maxSportGroup" class="form-label">Name</label>
+            <input type="number" class="form-control" id="maxSportGroup" placeholder="Max sport group" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div><!-- /.feedback -->
+          </div>
+        </div><!-- /.sport-group -->
+
+        <div class="date">
+          <div class="form-group">
+            <div class="input-group">
+              <label for="date">Registration date</label>
+              <input class="form-control" id="date" placeholder="yyyy-mm-dd"
+                     name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <svg class="icon">
+                    <use xlink:href="../assets/img/sprite.svg#calendar"></use>
+                  </svg>
+                </button>
+              </div><!-- /.input-group-append -->
+            </div><!-- /.input-group -->
+          </div><!-- /.form-group -->
+        </div><!-- /.date -->
+      </div><!-- /.card-header -->
+
+
+      <!-- Card inner body -->
+      <div class="card-body card-body-achievements">
+        <div class="card-achievements">
+          <div class="card-header-achievements">
+            <h2>Sport achievements</h2>
+
+            <div class="custom-control custom-switch">
+              <input type="checkbox" class="custom-control-input" id="enable">
+              <label class="custom-control-label" for="enable">Enable</label>
+            </div><!-- /.custom-control custom-switch -->
+          </div><!-- /.card-header-achievements -->
+          <div class="card-body">
+            <button type="button" class="btn btn-primary btn-add">Add</button>
+
+            <div class="achievements">
+              <app-achievement></app-achievement>
+            </div><!-- /.achievements -->
+          </div><!-- /.card-body -->
+        </div><!-- /.card-achievements -->
+      </div><!-- /.card-body card-body-achievements -->
+      <!-- / Card inner body -->
+
+
+    </div><!-- /.card -->
+  </main><!-- /.card-body -->
+
+
+  <!-- Card main footer -->
+  <footer class="card-footer text-muted">
+    <button type="button" class="btn btn-primary">Save</button>
+  </footer>
+</div><!-- /.card -->

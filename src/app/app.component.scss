@@ -1,0 +1,261 @@
+// ==================================
+// 1. Card main
+// 2. Card header
+// 3. Card achievements
+// 4. Card footer
+// $. Other
+// ==================================
+
+
+// 1. Card main
+.card-main {
+  width: 100%;
+  max-width: 1170px;
+  display: block;
+  padding: 10px 15px;
+  margin: 0 auto;
+
+  border: 1px solid #ccc;
+  border-radius: 1.1em;
+}
+
+
+// 2. Card header
+.card-header {
+  background-color: #fff;
+  border: 0;
+
+
+  .card-header-inner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+
+
+  .date {
+
+
+    input {
+      display: block;
+      width: 100%;
+      border-radius: 15px;
+
+      text-transform: uppercase;
+
+      position: relative;
+    }
+
+    button {
+      padding: 3px 10px;
+      margin: 3.5px 3px;
+      border: 2px;
+      border-radius: 12px;
+      background-color: #EAE9F4;
+
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .icon {
+      width: 100%;
+      max-height: 15px;
+      max-width: 15px;
+      padding: 0;
+      margin: 0;
+
+      fill: #2E2691;
+    }
+  }
+}
+
+
+// 2. Card body
+.card-body {
+
+
+  .full-name,
+  .sport-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      width: 49%;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+
+// 3. Card achievements
+.card-body-achievements {
+  margin-top: 0;
+  padding-top: 5px;
+}
+
+.card-achievements {
+  border: 2px solid #EBEDF4;
+  border-radius: 1.1em;
+  overflow: hidden;
+
+
+  .card-header-achievements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: 2px solid #EBEDF4;
+    background-color: #F7F8FC;
+
+    h2 {
+      width: 100%;
+      display: block;
+      margin: 15px 20px;
+      padding: 0;
+
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .custom-switch {
+      display: flex;
+      align-items: center;
+      margin: 15px 25px;
+      padding: 0;
+
+      label {
+        margin-left: 20px;
+
+        color: #798590;
+        font-size: 13px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .btn-add {
+    width: 100%;
+    display: block;
+    margin: 15px 0 0 0;
+    border: 0;
+    border-radius: 30px;
+    background-color: #F5F4FA;
+
+    color: #40399A;
+    font-weight: 600;
+  }
+
+  .achievements {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+// 4. Card footer
+.card-footer {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  margin: 0;
+  padding: 10px;
+  border: 0;
+
+  background-color: #fff;
+
+
+  .btn-primary {
+    width: 100%;
+    max-width: 150px;
+    display: block;
+    margin: 0;
+    border-radius: 15px;
+    border: 0;
+    background-color: #2E2691;
+
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+
+// $. Other
+.card {
+  border: 2px solid #E5E8F0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+label {
+  width: 100%;
+  display: block;
+  margin: 0 15px;
+  padding: 0;
+
+  color: #8691A5;
+  font-weight: 600;
+}
+
+input {
+  display: block;
+  width: 100%;
+  border: 2px solid #EDEFF5;
+  border-radius: 15px;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+#close {
+  border: none;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent;
+
+  color: #212529;
+  font: inherit;
+  text-indent: 100%;
+
+  position: relative;
+
+  cursor: pointer;
+
+
+  &:focus {
+    outline: solid 0 transparent;
+    box-shadow: 0 0 0 2px #212529;
+  }
+
+  &:hover {
+    background: rgba(33, 37, 41, .1)
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 15%;
+    left: calc(50% - .0625em);
+    width: .125em;
+    height: 70%;
+    border-radius: .125em;
+    transform: rotate(45deg);
+    background: currentcolor;
+    content: ''
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
