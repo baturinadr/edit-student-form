@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {NgbDate} from "@ng-bootstrap/ng-bootstrap";
+
+import {StudentService} from "./services/student.service";
+import {IStudent} from "./models/student.model";
 
 
 @Component({
@@ -10,8 +14,12 @@ import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 export class AppComponent implements OnInit {
   public form: FormGroup;
 
+  constructor(private studentService: StudentService) {
+  }
+
   public ngOnInit(): void {
     this.initializeForm();
+    this.fillForm();
   }
 
   public initializeForm(): void {
@@ -45,5 +53,35 @@ export class AppComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.form.invalid) return;
+
+    const {registrationDate} = this.form.value;
+    const year = registrationDate.year;
+    const month = registrationDate.month;
+    const day = registrationDate.day;
+
+    this.form.value.registrationDate = `${year}-${month}-${day}`;
+
+    this.studentService.updateStudent(this.form.value);
+  }
+
+  private fillForm(): void {
+    this.studentService.getStudent('John1')
+      .subscribe((student: IStudent) => {
+        if (student.sportGroupsAchievements) {
+          const achievementsArr = student.sportGroupsAchievements.map(achievement => new FormControl(achievement));
+          this.form.addControl('sportGroupsAchievements', new FormArray(achievementsArr));
+        } else {
+          delete student.sportGroupsAchievements;
+        }
+
+        const date = new Date(student.registrationDate);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+
+        // @ts-ignore
+        student.registrationDate = new NgbDate(year, month, day);
+        this.form.setValue(student);
+      });
   }
 }
