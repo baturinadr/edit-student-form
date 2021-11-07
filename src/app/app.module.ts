@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // Components
@@ -16,6 +16,7 @@ import {AchievementComponent} from './components/achievement/achievement.compone
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule
   ],
   providers: [],

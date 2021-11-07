@@ -1,5 +1,5 @@
 <div class="input-group">
   <label for="achievement">Name</label>
-  <input type="text" id="achievement">
-  <button type="button" class="btn btn-outline-secondary">Delete</button>
+  <input type="text" id="achievement" [formControl]="achievementControl">
+  <button type="button" class="btn btn-outline-secondary" (click)="delete()">Delete</button>
 </div>

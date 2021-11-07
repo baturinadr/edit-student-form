@@ -1,5 +1,5 @@
 <!-- Card && Card main -->
-<div class="card card-main">
+<form class="card card-main" [formGroup]="form" (ngSubmit)="onSubmit()">
   <header class="card-header">
     <div class="card-header-inner">
       <h1>Edit student</h1>
@@ -14,47 +14,81 @@
     <div class="card">
       <div class="card-header">
         <div class="full-name">
-          <div>
+          <div [ngClass]="{invalid: form.get('name').touched && form.get('name').invalid}">
             <label for="studentName" class="form-label">Name</label>
-            <input type="text" class="form-control" id="studentName" placeholder="Student's name" required>
-            <div class="valid-feedback">
-              Looks good!
+            <input type="text" class="form-control" id="studentName" placeholder="Student's name"
+                   formControlName="name">
+            <div class="validation" *ngIf="form.get('name').touched && form.get('name').hasError('required')">
+              This field is required!
+            </div><!-- /.feedback -->
+            <div class="validation" *ngIf="form.get('name').hasError('minlength')">
+              <p>The student's name must be at least
+                {{form.get('name').errors.minlength.requiredLength}} characters long.</p>
+              <p>Now entered characters: {{form.get('name').errors.minlength.actualLength}}</p>
+            </div><!-- /.feedback -->
+            <div class="validation" *ngIf="form.get('name').hasError('maxlength')">
+              <p>The student's name must be up to
+                {{form.get('name').errors.maxlength.requiredLength}} characters long.</p>
+              <p>Now entered characters: {{form.get('name').errors.maxlength.actualLength}}</p>
             </div><!-- /.feedback -->
           </div>
 
-          <div>
+          <div [ngClass]="{invalid: form.get('age').touched && form.get('age').invalid}">
             <label for="studentAge" class="form-label">Age</label>
-            <input type="text" class="form-control" id="studentAge" placeholder="Student's age" required>
-            <div class="invalid-feedback">
-              Please choose a username.
+            <input type="number" class="form-control" id="studentAge" placeholder="Student's age" formControlName="age">
+            <div class="validation" *ngIf="form.get('age').touched && form.get('age').hasError('required')">
+              This field is required!
+            </div><!-- /.feedback -->
+            <div class="validation" *ngIf="form.get('age').touched && form.get('age').hasError('min')">
+              Please enter the correct age.
             </div><!-- /.feedback -->
           </div>
         </div><!-- /.full-name -->
 
         <div class="sport-group">
-          <div>
-            <label for="minSportGroup" class="form-label">Name</label>
-            <input type="number" class="form-control" id="minSportGroup" placeholder="Min sport group" required>
-            <div class="valid-feedback">
-              Looks good!
+          <div [ngClass]="{invalid: form.get('minSportGroup').touched && form.get('minSportGroup').invalid}">
+            <label for="minSportGroup" class="form-label">Min sport group</label>
+            <input type="number" class="form-control" id="minSportGroup" formControlName="minSportGroup">
+            <div class="validation"
+                 *ngIf="form.get('minSportGroup').touched && form.get('minSportGroup').hasError('required')">
+              This field is required!
+            </div><!-- /.feedback -->
+            <div class="validation"
+                 *ngIf="form.get('minSportGroup').touched && form.get('minSportGroup').hasError('min')">
+              Enter the correct number of groups.
             </div><!-- /.feedback -->
           </div>
 
-          <div>
-            <label for="maxSportGroup" class="form-label">Name</label>
-            <input type="number" class="form-control" id="maxSportGroup" placeholder="Max sport group" required>
-            <div class="valid-feedback">
-              Looks good!
+          <div [ngClass]="{invalid: form.get('maxSportGroup').touched && form.get('maxSportGroup').invalid}">
+            <label for="maxSportGroup" class="form-label">Max sport group</label>
+            <input type="number" class="form-control" id="maxSportGroup" formControlName="maxSportGroup">
+            <div class="validation"
+                 *ngIf="form.get('maxSportGroup').touched && form.get('maxSportGroup').hasError('required')">
+              This field is required!
+            </div><!-- /.feedback -->
+            <div class="validation"
+                 *ngIf="form.get('maxSportGroup').touched && form.get('maxSportGroup').hasError('min')">
+              Enter the correct number of groups.
             </div><!-- /.feedback -->
           </div>
         </div><!-- /.sport-group -->
 
         <div class="date">
           <div class="form-group">
-            <div class="input-group">
+            <div
+              class="input-group"
+              [ngClass]="{invalid: form.get('registrationDate').touched && form.get('registrationDate').invalid}"
+            >
               <label for="date">Registration date</label>
-              <input class="form-control" id="date" placeholder="yyyy-mm-dd"
-                     name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+              <input
+                class="form-control"
+                id="date"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                formControlName="registrationDate"
+              >
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
                   <svg class="icon">
@@ -63,6 +97,10 @@
                 </button>
               </div><!-- /.input-group-append -->
             </div><!-- /.input-group -->
+            <div class="validation"
+                 *ngIf="form.get('registrationDate').touched && form.get('registrationDate').hasError('required')">
+              Please enter a date!
+            </div><!-- /.feedback -->
           </div><!-- /.form-group -->
         </div><!-- /.date -->
       </div><!-- /.card-header -->
@@ -75,15 +113,19 @@
             <h2>Sport achievements</h2>
 
             <div class="custom-control custom-switch">
-              <input type="checkbox" class="custom-control-input" id="enable">
+              <input type="checkbox" class="custom-control-input" id="enable" formControlName="hasSportAchievements">
               <label class="custom-control-label" for="enable">Enable</label>
             </div><!-- /.custom-control custom-switch -->
           </div><!-- /.card-header-achievements -->
-          <div class="card-body">
-            <button type="button" class="btn btn-primary btn-add">Add</button>
+          <div class="card-body" [ngClass]="{hide: !form.get('hasSportAchievements').value}">
+            <button type="button" class="btn btn-primary btn-add" (click)="onAddAchievement()">Add</button>
 
             <div class="achievements">
-              <app-achievement></app-achievement>
+              <app-achievement
+                *ngFor="let achievement of getSportGroupsAchievements(); let idx = index"
+                [achievementControl]="achievement"
+                (onDelete)="deleteAchievement(idx)"
+              ></app-achievement>
             </div><!-- /.achievements -->
           </div><!-- /.card-body -->
         </div><!-- /.card-achievements -->
@@ -97,6 +139,6 @@
 
   <!-- Card main footer -->
   <footer class="card-footer text-muted">
-    <button type="button" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
   </footer>
-</div><!-- /.card -->
+</form>

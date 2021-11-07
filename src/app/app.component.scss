@@ -99,6 +99,11 @@
 .card-body-achievements {
   margin-top: 0;
   padding-top: 5px;
+
+
+  .card-body {
+    border-top: 2px solid #EBEDF4;
+  }
 }
 
 .card-achievements {
@@ -112,7 +117,6 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border-bottom: 2px solid #EBEDF4;
     background-color: #F7F8FC;
 
     h2 {
@@ -157,6 +161,13 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  .hide {
+    display: none;
+    padding: 0;
+    margin: 0;
+    border: none;
   }
 }
 
@@ -257,5 +268,32 @@ input {
 
   &:after {
     transform: rotate(-45deg);
+  }
+}
+
+.invalid {
+
+  label {
+    color: #EB1000;
+  }
+
+  input {
+    border-color: #EB1000;
+  }
+}
+
+.validation {
+  display: block;
+  margin: 3px 15px 0;
+  padding: 0;
+
+  font-size: 13px;
+  color: #EB1000;
+
+
+  p {
+    display: block;
+    padding: 0;
+    margin: 0;
   }
 }
